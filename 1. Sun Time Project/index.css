@@ -1,0 +1,44 @@
+body {
+    background: url(background_sun_time_project.jpg);
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+h1 {
+    color: orange;
+    font-style: italic;
+    padding: 15px;
+    text-align: center;
+}
+
+div {
+    text-align: center;
+}
+
+#display-box-sunrise {
+    background-color: orange;
+    padding: 8px;
+    height: 60px;
+    width: 250px;
+    align-content: center;
+    border: 2px solid black;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#display-box-sunset {
+    background-color: orange;
+    padding: 8px;
+    height: 60px;
+    width: 250px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border-top: 0px;
+}
+
+button {
+    color: green;
+    font-weight: bold;
+    background-color: blue;
+}
