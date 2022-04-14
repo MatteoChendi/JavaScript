@@ -9,6 +9,7 @@ const searchInput = document.getElementById("search-input")
 const searchBtn = document.getElementById("search-btn")
 let sunrise = document.getElementById("display-box-sunrise")
 let sunset = document.getElementById("display-box-sunset")
+let cityName = ""
 // access key is taken from "OpenWeather API"
 const accessKey = "7abd9140ffaee6ecffd6022f8f27c79e"
 
@@ -20,17 +21,15 @@ function render() {
 
 // // return the result in a text below (first, then i will change it to a box) if found, return NO if not found/error  
 searchBtn.addEventListener("click",function() {
-    let loc = ""
+    cityName = searchInput.value
     // call API for input city in search bar
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${accessKey}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
     .then(response => response.json()
     .then(data => console.log(data)))
     // render name of city below
     render()
-    //sunrise.innerHTML = searchInput.value
     // delete name of city in search bar
     searchInput.value = ""
-    
 })
 
 // // // get an API with all the main locations in the world --> search by location name 
@@ -46,7 +45,6 @@ document.addEventListener("keyup", function(event) {
         event.preventDefault();
         searchBtn.click()
         };  
-    //render()
 })
 // check whether the search bar is empty. If empty do not trigger the search function
     
