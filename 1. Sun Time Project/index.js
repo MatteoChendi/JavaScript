@@ -7,27 +7,27 @@
 // OK // create a Sarch button, so when typed you can confirm
 const searchInput = document.getElementById("search-input") 
 const searchBtn = document.getElementById("search-btn")
-let risultatoEl = document.getElementById("risultato")
+let sunrise = document.getElementById("display-box-sunrise")
+let sunset = document.getElementById("display-box-sunset")
 // access key is taken from "OpenWeather API"
 const accessKey = "7abd9140ffaee6ecffd6022f8f27c79e"
 
 // OK // the Search button triggers a function(): get a JSON request for the typed location 
-let loc = ""
-
 function render() {
-    loc = searchInput.value
-    risultatoEl.innerHTML = loc
+    // render name of city below
+    sunrise.innerHTML = searchInput.value
 }
 
 // // return the result in a text below (first, then i will change it to a box) if found, return NO if not found/error  
 searchBtn.addEventListener("click",function() {
-    risultatoEl = searchInput
+    let loc = ""
     // call API for input city in search bar
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${accessKey}`)
     .then(response => response.json()
     .then(data => console.log(data)))
     // render name of city below
-    risultatoEl.innerHTML = loc
+    render()
+    //sunrise.innerHTML = searchInput.value
     // delete name of city in search bar
     searchInput.value = ""
     
@@ -46,7 +46,7 @@ document.addEventListener("keyup", function(event) {
         event.preventDefault();
         searchBtn.click()
         };  
-    render()
+    //render()
 })
 // check whether the search bar is empty. If empty do not trigger the search function
     
