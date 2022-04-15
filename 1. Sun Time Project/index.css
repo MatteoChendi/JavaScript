@@ -24,6 +24,7 @@ div {
 .container{
     width: 70vw;
     height: 30vh;
+    height: auto;
     margin: auto;
     
     background-color: bisque;
@@ -33,12 +34,19 @@ div {
     font-weight: bold;
     
     display: grid;
-    grid-template-columns: 150px 1fr 1fr 100px;
+    display: -ms-grid;
+    /*to display for either Internet Explorer, and all other browsers */
+    grid-template-columns: 150px 1fr 1fr 60px;
+    -ms-grid-column: 150px 1fr 1fr 60px;
     grid-template-rows: 1fr 1fr;
+    -ms-grid-row: 1fr 1fr;
 
     gap: 10px;
     padding: 10px;
     box-sizing: border-box;
+
+    min-width: min-content;
+    min-height: min-content;
 }
 
 .map {
@@ -48,6 +56,8 @@ div {
     background-color: antiquewhite;
     border: 2px solid black;
     font-size: 23px;
+
+    min-width: min-content;
 }
 
 .sunrise {
@@ -57,6 +67,8 @@ div {
     background-color:antiquewhite;
     border: 2px solid black;
     font-size: 21px;
+
+    min-width: min-content;
 }
 
 .sunset {
@@ -75,6 +87,8 @@ div {
     background-color: antiquewhite;
     border: 2px solid black;
     font-size: 15px;
+
+    min-width: min-content;
 }
 
 .set {
