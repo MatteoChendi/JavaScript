@@ -66,7 +66,7 @@ div {
 
     background-color:antiquewhite;
     border: 2px solid black;
-    font-size: 21px;
+    font-size: 10px;
 
     min-width: min-content;
 }
@@ -77,7 +77,7 @@ div {
 
     background-color: antiquewhite;
     border: 2px solid black;
-    font-size: 21px;
+    font-size: 10px;
 }
 
 .rise {
