@@ -17,26 +17,101 @@ div {
     border-radius: 5px;
 }
 
+.container{
+    width: 80vw;
+    height: 30vh;
+    margin: auto;
+    
+    background-color: bisque;
+    border-radius: 10px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 21px;
+
+    display: grid;
+    grid-template-columns: 150px 1fr 100px;
+    grid-template-rows: 1fr 1fr;
+
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.map {
+    grid-column-start: 1;
+    grid-column-end: 1;
+
+    grid-row-start: 1;
+    grid-row-end: span 2;
+
+    margin: auto;
+}
+
+.sunrise {
+    grid-column-start: 2;
+    grid-column-end: 2;
+
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    margin: auto;
+    width: fit-content;
+}
+
+.sunset {
+    grid-column-start: 2;
+    grid-column-end: 2;
+
+    grid-row-start: 2;
+    grid-row-end: 2;
+
+    margin: auto;
+}
+
+.rise {
+    grid-column-start: 3;
+    grid-column-end: 3;
+
+    grid-row-start: 1;
+    grid-row-end: 1;
+
+    margin: auto;
+}
+
+.set {
+    grid-column-start: 3;
+    grid-column-end: 3;
+
+    grid-row-start: 2;
+    grid-row-end: 2;
+
+    margin: auto;
+}
+
 #display-box-sunrise {
     background-color: orange;
     padding: 5px;
     height: 60px;
-    width: 250px;
+    width: 120px;
     align-content: center;
     border: 2px solid black;
     box-sizing: border-box;
     margin: 0 auto;
+    margin-top: 5px;
+    display: flex;
 }
 
 #display-box-sunset {
     background-color: orange;
     height: 60px;
-    width: 250px;
+    width: 120px;
     padding: 5px;
     border: 2px solid black;
     box-sizing: border-box;
     margin: 0 auto;
     margin-top: 5px;
+    display: flex;
 }
 
 button {
