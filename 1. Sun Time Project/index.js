@@ -21,18 +21,21 @@ function render() {
 
 // // return the result in a text below (first, then i will change it to a box) if found, return NO if not found/error  
 searchBtn.addEventListener("click",function() {
-    cityName = searchInput.value
-    // call API for input city in search bar
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
-    .then(response => response.json()
-    .then(data => console.log(data)))
-    // render name of city below
-    render()
-    // delete name of city in search bar
-    searchInput.value = ""
+    if (searchInput.value !== "") {
+        cityName = searchInput.value
+        // call API for input city in search bar
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
+        .then(response => response.json()
+        .then(data => console.log(data)))
+        // render name of city below
+        render()
+        // delete name of city in search bar
+        searchInput.value = ""
+    }
+        
 })
 
-// // // get an API with all the main locations in the world --> search by location name 
+// OK // // get an API with all the main locations in the world --> search by location name 
 // // // get the location when typing in the search bar
 // // // create an updatable list with first 3 location similar by name when typing
 
