@@ -7,8 +7,8 @@
 // OK // create a Sarch button, so when typed you can confirm
 const searchInput = document.getElementById("search-input") 
 const searchBtn = document.getElementById("search-btn")
-let sunrise = document.getElementById("display-box-sunrise")
-let sunset = document.getElementById("display-box-sunset")
+let sunrise = document.getElementById("sunrise")
+let sunset = document.getElementById("sunset")
 let cityName = ""
 // access key is taken from "OpenWeather API"
 const accessKey = "7abd9140ffaee6ecffd6022f8f27c79e"
