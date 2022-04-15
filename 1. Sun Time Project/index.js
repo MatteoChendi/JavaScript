@@ -32,7 +32,6 @@ searchBtn.addEventListener("click",function() {
         // delete name of city in search bar
         searchInput.value = ""
     }
-        
 })
 
 // OK // // get an API with all the main locations in the world --> search by location name 
