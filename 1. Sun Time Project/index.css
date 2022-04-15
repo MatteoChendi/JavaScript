@@ -81,6 +81,7 @@ div {
 }
 
 .rise {
+    background-image: url(sunrise1.jpg)
     grid-column: 4 / 4;
     grid-row: 1 / 1;
 
