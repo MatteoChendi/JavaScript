@@ -53,13 +53,14 @@ document.addEventListener("keyup", function(event) {
 
 // 2. connect location searched with sunrise/sunset time and display them with the location on a new "box" below (centered and well designed)
 // // 2.1 when clicked, display a centered box below with features below
-// // 2.2 create: Location name, Sunrise time, Sunset time (OPTIONAL: snapshot of location on world map)
+// // 2.2 create: Location name, Sunrise time, Sunset time and snapshot of location on world map
+// // 2.3 import sunset and sunrise emoji and display them in proper boxes on the side
 
 // 3. create button to save that search and add it below permanently
 // // 3.1 save button to save last search
 // // 3.2 saved location will be displayed on a line (bar) below
-// // 3.3 add possibility to click on previous saved location to change main box displayed
+// // 3.3 add possibility to click on previous saved location to change main box displayed ("VIEW" button near each saved location)
 // // 3.4 if changed, last location will be lost if not saved. If saved will be simply added below (and in localStorage)
-// // 3.3 create button DELETE if the user wants to delete what previously saved near each saved location
+// // 3.3 create button DELETE if the user wants to delete what previously saved near each saved location ("DELETE" button near each saved location)
 
 // 4. When new search and select it, substitute new search with wath displayed in box
