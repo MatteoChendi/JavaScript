@@ -23,9 +23,9 @@ div {
 
 .container{
     width: 70vw;
-    height: 30vh;
     height: auto;
     margin: auto;
+    overflow: hidden;
     
     background-color: bisque;
     border-radius: 10px;
@@ -36,7 +36,7 @@ div {
     display: grid;
     display: -ms-grid;
     /*to display for either Internet Explorer, and all other browsers */
-    grid-template-columns: 150px 1fr 1fr 60px;
+    grid-template-columns: 150px 1fr 1fr 40px;
     -ms-grid-column: 150px 1fr 1fr 60px;
     grid-template-rows: 1fr 1fr;
     -ms-grid-row: 1fr 1fr;
@@ -81,24 +81,30 @@ div {
 }
 
 .rise {
-    background-image: url(sunrise1.jpg)
+    background-image: url("./sunrise1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid black;
+
     grid-column: 4 / 4;
     grid-row: 1 / 1;
-
-    background-color: antiquewhite;
-    border: 2px solid black;
-    font-size: 15px;
-
+ 
     min-width: min-content;
 }
 
 .set {
+    background: url(./sunset1.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     grid-column: 4 / 4;
     grid-row: 2 / 2;
 
     background-color: antiquewhite;
     border: 2px solid black;
-    font-size: 15px;
+
+    min-width: min-content;
 }
 
 button {
@@ -106,3 +112,50 @@ button {
     font-weight: bold;
     background-color: blue;
 }
+
+{
+    "coord": {
+      "lon": -122.08,
+      "lat": 37.39
+    },
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "clear sky",
+        "icon": "01d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 282.55,
+      "feels_like": 281.86,
+      "temp_min": 280.37,
+      "temp_max": 284.26,
+      "pressure": 1023,
+      "humidity": 100
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 1.5,
+      "deg": 350
+    },
+    "clouds": {
+      "all": 1
+    },
+    "dt": 1560350645,
+    "sys": {
+      "type": 1,
+      "id": 5122,
+      "message": 0.0139,
+      "country": "US",
+      "sunrise": 1560343627,
+      "sunset": 1560396563
+    },
+    "timezone": -25200,
+    "id": 420006353,
+    "name": "Mountain View",
+    "cod": 200
+    }                         
+  
+                      
