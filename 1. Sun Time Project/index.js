@@ -24,9 +24,26 @@ searchBtn.addEventListener("click",function() {
     if (searchInput.value !== "") {
         cityName = searchInput.value
         // call API for input city in search bar
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
-        .then(response => response.json()
-        .then(data => console.log(data)))
+        // let's define 2 variable and promises, so that they will be run at the same time
+        // and not one after the other
+        const sunriseEl = new Promise((resolve, reject) => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
+            .then(response => response.json()
+            .then(data => console.log(data.sys.sunrise)))
+        })
+
+        const sunsetEl = new Promise((resolve, reject) => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
+            .then(response => response.json()
+            .then(data => console.log(data.sys.sunset)))
+        })
+        
+        Promise.all([
+            sunriseEl,
+            sunsetEl
+        ]).then((message) => {
+            console.log(message)
+        })
         // render name of city below
         render()
         // delete name of city in search bar
@@ -54,7 +71,8 @@ document.addEventListener("keyup", function(event) {
 // 2. connect location searched with sunrise/sunset time and display them with the location on a new "box" below (centered and well designed)
 // // 2.1 when clicked, display a centered box below with features below
 // // 2.2 create: Location name, Sunrise time, Sunset time and snapshot of location on world map
-// // 2.3 import sunset and sunrise emoji and display them in proper boxes on the side
+// OK // 2.3 import sunset and sunrise emoji and display them in proper boxes on the side
+// // 2.3.1 adjust overall size of div, so that it not go outside the webpage and proportion are maintained equal (both hight and width)
 
 // 3. create button to save that search and add it below permanently
 // // 3.1 save button to save last search
