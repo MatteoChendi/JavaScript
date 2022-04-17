@@ -19,37 +19,75 @@ function render() {
     sunrise.innerHTML = searchInput.value
 }
 
-// // return the result in a text below (first, then i will change it to a box) if found, return NO if not found/error  
-searchBtn.addEventListener("click",function() {
-    if (searchInput.value !== "") {
-        cityName = searchInput.value
-        // call API for input city in search bar
-        // let's define 2 variable and promises, so that they will be run at the same time
-        // and not one after the other
-        const sunriseEl = new Promise((resolve, reject) => {
-            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
-            .then(response => response.json()
-            .then(data => console.log(data.sys.sunrise)))
-        })
+// define a function that will convert millisecond to current time (millisecond is provided by API call)
+function millisecondsToTime(milliTime)
+{
+      var milliseconds = milliTime % 1000;
+      var seconds = Math.floor((milliTime / 1000) % 60);
+      var minutes = Math.floor((milliTime / (60 * 1000)) % 60);
 
-        const sunsetEl = new Promise((resolve, reject) => {
-            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
-            .then(response => response.json()
-            .then(data => console.log(data.sys.sunset)))
-        })
+      return minutes + ":" + seconds + "." + milliseconds;
+}
+
+async function getData() {
+    // fetch data that will then be assigned to a variable
+    const cityFound = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
+    return cityFound.json()
+}
+
+// // return the result in a text below (first, then i will change it to a box) if found, return NO if not found/error  
+searchBtn.addEventListener("click", async function clickedButton() {
+    if (searchInput.value !== "") {
+
+        cityName = searchInput.value
+
+        // fetch data
+        getData()
         
-        Promise.all([
-            sunriseEl,
-            sunsetEl
-        ]).then((message) => {
-            console.log(message)
-        })
+        // assign fetch data to a variable "data"
+        const data = await getData()
+        console.log({data})
+        console.log(`Sunrise time in ${cityName} is ${data.sys.sunrise}`)
+        console.log(`Sunset time in ${cityName} is ${data.sys.sunset}`)
+        transformTime(data.sys.sunrise)
+        transformTime(data.sys.sunset)
+
         // render name of city below
         render()
+
         // delete name of city in search bar
         searchInput.value = ""
     }
 })
+
+
+// old way to fetch data:    
+//fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${accessKey}`)
+//.then(response => response.json())
+//.then(data=> console.log((`${cityName} sunset time is ${data.sys.sunset}`)))
+//}
+
+
+function transformTime(timeToTransform) {
+    // function to convert from unix to UTC format
+    let unixTimestamp = timeToTransform
+    // Create a new JavaScript Date object based on the timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    let date = new Date(unixTimestamp * 1000)
+    // Hours part from the timestamp
+    let hours = date.getHours();
+    // Minutes part from the timestamp
+    let minutes = "0" + date.getMinutes();
+    // Seconds part from the timestamp
+    let seconds = "0" + date.getSeconds();
+
+    // Will display time in 10:30:23 format
+    let formattedTime = hours + ':' + minutes.substring(-2) + ':' + seconds.substring(-2);
+
+    console.log(formattedTime)
+}
+
+
 
 // OK // // get an API with all the main locations in the world --> search by location name 
 // // // get the location when typing in the search bar
