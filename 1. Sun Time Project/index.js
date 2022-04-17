@@ -9,6 +9,7 @@ const searchBtn = document.getElementById("search-btn")
 const mapCity = document.getElementById("mappa")
 const sunrise = document.getElementById("sunrise")
 const sunset = document.getElementById("sunset")
+const errorMessage = document.getElementById("error-message")
 let cityName = ""
 // access key is taken from "OpenWeather API"
 const accessKey = "7abd9140ffaee6ecffd6022f8f27c79e"
@@ -20,7 +21,7 @@ async function getData() {
     return cityFound.json()
 }
 
-// // return the result in a text below (first, then i will change it to a box) if found, return NO if not found/error  
+// OK // return the result in a text below (first, then i will change it to a box) if found, return NO if not found/error  
 searchBtn.addEventListener("click", async function clickedButton() {
     if (searchInput.value !== "") {
         cityName = searchInput.value
@@ -31,18 +32,26 @@ searchBtn.addEventListener("click", async function clickedButton() {
         // assign fetch data to a variable "data"
         // remember to add "await" in front of the getData() function, or clickButton will not work with "async"
         const data = await getData()
-        console.log({data})
-       
-        const sunriseTime = format_time(data.sys.sunrise)
-        const sunsetTime = format_time(data.sys.sunset)
 
-        console.log(`Sunrise time in ${cityName} is ${sunriseTime} locale time`)
-        console.log(`Sunset time in ${cityName} is ${sunsetTime} locale time`)
-        
-        // render time in boxes below
-        sunrise.innerHTML = await sunriseTime
-        sunset.innerHTML = await sunsetTime
-        mapCity.innerHTML = await cityName
+        // if city is not found, trowh an exception
+        if (data.message === "city not found") {
+            errorMessage.innerHTML = "Sorry, city not found! Try again."
+        } else {
+            console.log({data})
+       
+            const sunriseTime = format_time(data.sys.sunrise)
+            const sunsetTime = format_time(data.sys.sunset)
+    
+            console.log(`Sunrise time in ${cityName} is ${sunriseTime} locale time`)
+            console.log(`Sunset time in ${cityName} is ${sunsetTime} locale time`)
+            
+            // render time in boxes below
+            sunrise.innerHTML = await sunriseTime
+            sunset.innerHTML = await sunsetTime
+            mapCity.innerHTML = await cityName
+
+            errorMessage.innerHTML = ""
+        }
 
         // delete name of city in search bar
         searchInput.value = ""
