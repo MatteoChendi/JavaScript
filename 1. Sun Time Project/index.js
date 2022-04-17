@@ -19,15 +19,6 @@ function render() {
     sunrise.innerHTML = searchInput.value
 }
 
-// define a function that will convert millisecond to current time (millisecond is provided by API call)
-function millisecondsToTime(milliTime)
-{
-      var milliseconds = milliTime % 1000;
-      var seconds = Math.floor((milliTime / 1000) % 60);
-      var minutes = Math.floor((milliTime / (60 * 1000)) % 60);
-
-      return minutes + ":" + seconds + "." + milliseconds;
-}
 
 async function getData() {
     // fetch data that will then be assigned to a variable
