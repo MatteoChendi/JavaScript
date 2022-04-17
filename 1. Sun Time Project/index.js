@@ -45,13 +45,15 @@ searchBtn.addEventListener("click", async function clickedButton() {
         getData()
         
         // assign fetch data to a variable "data"
+        // remember to add "await" in front of the getData() function, or clickButton will not work with "async"
         const data = await getData()
         console.log({data})
-        console.log(`Sunrise time in ${cityName} is ${data.sys.sunrise}`)
-        console.log(`Sunset time in ${cityName} is ${data.sys.sunset}`)
-        transformTime(data.sys.sunrise)
-        transformTime(data.sys.sunset)
-
+       
+        //console.log(`Sunset time in ${cityName} is ${data.sys.sunset}`)
+        const sunriseTime = format_time(data.sys.sunrise)
+        const sunsetTime = format_time(data.sys.sunset)
+        console.log(`Sunrise time in ${cityName} is ${sunriseTime}`)
+        console.log(`Sunset time in ${cityName} is ${sunsetTime}`)
         // render name of city below
         render()
 
@@ -68,24 +70,43 @@ searchBtn.addEventListener("click", async function clickedButton() {
 //}
 
 
-function transformTime(timeToTransform) {
+// this function works for converting UNIX time to current time
+function format_time(s) {
+    //return new Date(s * 1e3).toISOString().slice(-13, -5);
+
+    let d = new Date(new Date(s * 1e3).toISOString());
+    let formattedDate = Intl.DateTimeFormat(undefined, {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      }).format(d);
+
+      return formattedDate
+}
+  
+
+// the following function does not work properly
+//function transformTime(timeToTransform) {
     // function to convert from unix to UTC format
-    let unixTimestamp = timeToTransform
+//    let unixTimestamp = timeToTransform
     // Create a new JavaScript Date object based on the timestamp
     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-    let date = new Date(unixTimestamp * 1000)
+//    let date = new Date(unixTimestamp * 1000)
     // Hours part from the timestamp
-    let hours = date.getHours();
+//    let hours = date.getHours();
     // Minutes part from the timestamp
-    let minutes = "0" + date.getMinutes();
+//    let minutes = "0" + date.getMinutes();
     // Seconds part from the timestamp
-    let seconds = "0" + date.getSeconds();
+//    let seconds = "0" + date.getSeconds();
 
     // Will display time in 10:30:23 format
-    let formattedTime = hours + ':' + minutes.substring(-2) + ':' + seconds.substring(-2);
+//    let formattedTime = hours + ':' + minutes.substring(-2) + ':' + seconds.substring(-2);
 
-    console.log(formattedTime)
-}
+//    console.log(formattedTime)
+//}
 
 
 
