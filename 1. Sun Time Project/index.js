@@ -4,15 +4,19 @@
 // OK // 1.1 create the design for the page
 // OK // 1.2 create search bar
 // OK // create a Sarch button, so when typed you can confirm
+
+
 const searchInput = document.getElementById("search-input") 
 const searchBtn = document.getElementById("search-btn")
 const mapCity = document.getElementById("mappa")
 const sunrise = document.getElementById("sunrise")
 const sunset = document.getElementById("sunset")
 const errorMessage = document.getElementById("error-message")
+const mapGoogle = document.getElementById("map-google")
 let cityName = ""
 // access key is taken from "OpenWeather API"
 const accessKey = "7abd9140ffaee6ecffd6022f8f27c79e"
+//const accessKeyGoogleMaps = ""
 
 // OK // the Search button triggers a function(): get a JSON request for the typed location 
 async function getData() {
@@ -41,23 +45,20 @@ searchBtn.addEventListener("click", async function clickedButton() {
        
             const sunriseTime = format_time(data.sys.sunrise)
             const sunsetTime = format_time(data.sys.sunset)
-    
-            console.log(`Sunrise time in ${cityName} is ${sunriseTime} locale time`)
-            console.log(`Sunset time in ${cityName} is ${sunsetTime} locale time`)
+            const countryCode = data.sys.country
             
             // render time in boxes below
             sunrise.innerHTML = await sunriseTime
             sunset.innerHTML = await sunsetTime
-            mapCity.innerHTML = await cityName
+            mapCity.innerHTML = await (`${cityName}, ${countryCode}`)
 
+            // remove error message when searching again successfully
             errorMessage.innerHTML = ""
         }
-
         // delete name of city in search bar
         searchInput.value = ""
     }
 })
-
 
 // this function works for converting UNIX time to current time
 function format_time(s) {
