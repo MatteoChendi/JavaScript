@@ -11,6 +11,7 @@ h1 {
     padding: 15px;
     text-align: center;
     height: 100%;
+    font-size: 35px;
 }
 
 #error-message {
@@ -39,8 +40,8 @@ div {
     display: grid;
     display: -ms-grid;
     /*to display for either Internet Explorer, and all other browsers */
-    grid-template-columns: 150px 1fr 1fr 40px;
-    -ms-grid-column: 150px 1fr 1fr 60px;
+    grid-template-columns: 150px 1fr 1fr 50px;
+    -ms-grid-column: 150px 1fr 1fr 50px;
     grid-template-rows: 1fr 1fr;
     -ms-grid-row: 1fr 1fr;
 
@@ -57,7 +58,7 @@ div {
 
     background-color: antiquewhite;
     border: 2px solid black;
-    font-size: 25px;
+    font-size: 20px;
     
     min-width: min-content;
 }
@@ -68,7 +69,7 @@ div {
 
     background-color:antiquewhite;
     border: 2px solid black;
-    font-size: 20px;
+    font-size: 17px;
 
     min-width: min-content;
 }
@@ -79,7 +80,7 @@ div {
 
     background-color: antiquewhite;
     border: 2px solid black;
-    font-size: 20px;
+    font-size: 17px;
 
     min-width: min-content;
 }
@@ -111,9 +112,35 @@ div {
     min-width: min-content;
 }
 
+.savedItemDisplay {
+  background-color:antiquewhite;
+  border: 2px solid black;
+  font-size: 17px;
+  
+  text-align: left;
+  margin: auto;
+  width: 357px;
+
+  min-width: min-content;
+}
+
+
 button {
     color: green;
     font-weight: bold;
-    background-color: blue;
+    background-color:aqua;
 }
+
+#save-btn {
+    color: aqua;
+    font-weight: bold;
+    background-color: green;
+}
+
+#delete-all {
+    color: black;
+    font-weight: bold;
+    background-color: red;
+}
+
                       
