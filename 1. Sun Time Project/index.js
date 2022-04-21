@@ -142,8 +142,6 @@ function render(listObject) {
 // // BONUS: capitalize the search so "milano" == "Milano" // //
 
 saveBtn.addEventListener("click", function() {
-    
-
     // first "if" is to avoid saving "LOCATION" in saved items list
     if (mapCity.innerHTML == "LOCATION") {
     } else {
