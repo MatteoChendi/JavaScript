@@ -30,10 +30,22 @@ async function getData() {
     return cityFound.json()
 }
 
+function capitalize(cityToCap) {
+    // Split the whole city name in single words and capitalize each word
+    // then recompose those words and assign it to cityName
+    let cityNameArray = cityToCap.split(" ")
+    //loop through each element of the array and capitalize the first letter.
+    for (var i = 0; i < cityNameArray.length; i++) {
+        cityNameArray[i] = cityNameArray[i].charAt(0).toUpperCase() + cityNameArray[i].slice(1);
+    }
+    cityName = cityNameArray.join(" ")
+    return cityName
+}
+
 // OK // return the result in a text below (first, then i will change it to a box) if found, return NO if not found/error  
-searchBtn.addEventListener("click", async function clickedButton() {
+searchBtn.addEventListener("click", async function clickedButton() {   
     if (searchInput.value !== "") {
-        cityName = searchInput.value
+        cityName = capitalize(searchInput.value)
 
         // fetch data
         getData()
@@ -67,7 +79,6 @@ searchBtn.addEventListener("click", async function clickedButton() {
 
 // this function works for converting UNIX time to current time
 function format_time(s) {
-
     // this only returns UTC format
     //return new Date(s * 1e3).toISOString().slice(-13, -5);
 
@@ -104,7 +115,7 @@ document.addEventListener("keyup", function(event) {
 // check whether the search bar is empty. If empty do not trigger the search function
     
 // 2. connect location searched with sunrise/sunset time and display them with the location on a new "box" below (centered and well designed)
-// // 2.1 when clicked, display a centered box below with features below
+// OK // 2.1 when clicked, display a centered box below with features below
 // // 2.2 create: Location name, Sunrise time, Sunset time and snapshot of location on world map
 // OK // 2.3 import sunset and sunrise emoji and display them in proper boxes on the side
 // OK // 2.3.1 adjust overall size of div, so that it not go outside the webpage and proportion are maintained equal (both hight and width)
@@ -117,9 +128,7 @@ let emptyListSavedItems = []
 function render(listObject) {
     let listItems = ""
     // iterate throught empty list length. Every time clicked on SAVE, add item on list 
-    // display every saved item as a <div> below, with city name & country code
-    // if item already in list, do not push it again and display error message
-   
+    // display every saved item as a <div> below, with city name & country code   
     // in case it is the first search, always add location to the list
     for (i=0; i<listObject.length; i++) {  
         add = `<div>${listObject[i]}</div>`
@@ -129,10 +138,12 @@ function render(listObject) {
     console.log(savedItems.innerHTML)
 }
 
-// // check if the location you want to save is already saved
+// OK // check if the location you want to save is already saved
 // // BONUS: capitalize the search so "milano" == "Milano" // //
 
 saveBtn.addEventListener("click", function() {
+    
+
     // first "if" is to avoid saving "LOCATION" in saved items list
     if (mapCity.innerHTML == "LOCATION") {
     } else {
@@ -150,7 +161,6 @@ saveBtn.addEventListener("click", function() {
             emptyListSavedItems.push(mapCity.innerHTML)
         }
     }
-    
     render(emptyListSavedItems)
     
     localStorage.setItem("emptyListSavedItems", JSON.stringify(emptyListSavedItems))
@@ -158,13 +168,13 @@ saveBtn.addEventListener("click", function() {
     console.log(`This is the local storage: ${JSON.parse(retrieveLocalStorage)}`)
 })
 
-// setting localStorage to true, we will render items saved in local storage when page is refreshed
+// OK // setting localStorage to true, we will render items saved in local storage when page is refreshed
 if (itemsFromLocalStorage) {
     emptyListSavedItems = itemsFromLocalStorage
     render(itemsFromLocalStorage)
 }
 
-// implement a DELETE ALL button to clear local storage
+// OK // implement a DELETE ALL button to clear local storage
 deleteAllBtn.addEventListener("dblclick", function() {
     localStorage.clear()
     emptyListSavedItems = []
