@@ -131,7 +131,10 @@ function render(listObject) {
     // display every saved item as a <div> below, with city name & country code   
     // in case it is the first search, always add location to the list
     for (i=0; i<listObject.length; i++) {  
-        add = `<div>${listObject[i]}</div>`
+        add = `
+        <div id="saved-items" class="savedItemDisplay">${listObject[i]}<button id="view-btn">VIEW</button>
+            <button id="delete-btn">DELETE</button></div>
+        `
         listItems += add
         }
     savedItems.innerHTML = listItems
