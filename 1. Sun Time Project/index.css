@@ -30,14 +30,11 @@ div {
     height: fit-content;
     margin: auto;
     overflow: hidden;
-    
     background-color: azure;
     opacity: 80%;
     border-radius: 10px;
-
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    
     display: grid;
     display: -ms-grid;
     /*to display for either Internet Explorer, and all other browsers */
@@ -45,58 +42,46 @@ div {
     -ms-grid-column: 150px 1fr 1fr 50px;
     grid-template-rows: 1fr 1fr;
     -ms-grid-row: 1fr 1fr;
-
     gap: 10px;
     padding: 10px;
     box-sizing: border-box;
-
     min-width: min-content;
 }
 
 .map {
     grid-column: 1 / 1;
     grid-row: 1 / span 2;
-
     background-color: beige;
     border: 2px solid black;
     font-size: 20px;
-    
-
     min-width: min-content;
 }
 
 .sunrise {
     grid-column: 2 / span 2;
     grid-row: 1 / 1;
-
     background-color:beige;
     border: 2px solid black;
     font-size: 17px;
-
     min-width: min-content;
 }
 
 .sunset {
     grid-column: 2 / span 2;
     grid-row: 2 / 2;
-
     background-color: beige;
     border: 2px solid black;
     font-size: 17px;
-
     min-width: min-content;
 }
 
 .rise {
     background-image: url("./sunrise1.jpg");
     background-position: center center;
-   
     background-size: cover;
     border: 2px solid black;
-
     grid-column: 4 / 4;
     grid-row: 1 / 1;
- 
     min-width: min-content;
 }
 
@@ -107,14 +92,10 @@ div {
     background-size: cover;
     grid-column: 4 / 4;
     grid-row: 2 / 2;
-
     background-color: antiquewhite;
     border: 2px solid black;
-
     min-width: min-content;
 }
-
-
 
 
 button {
@@ -135,44 +116,25 @@ button {
     background-color: red;
 }
 
-                 
-.container-below{
+
+.savedItemDisplay {
+  display: ;
   width:fit-content;
-  height: fit-content;
-  margin: auto;
-
-  background-color: transparent;
-  opacity: 70%;
-  border-radius: 10px;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  
+  height:min-content;
+  margin:auto;
+  background-color: beige;
+  opacity: 80%;
+  border: 2px solid black;
+  gap: 10px;
+  padding: 10px;
   display: grid;
   display: -ms-grid;
   /*to display for either Internet Explorer, and all other browsers */
-  grid-template-columns: repeat(4, 85px);
+  grid-template-columns: 1fr;
   /*-ms-grid-column: 85px 85px 85px 85px;*/
   grid-template-rows: repeat(auto-fill 50px);
   /*-ms-grid-row: 1fr;*/
-
-  gap: 10px;
-  padding: 10px;
-  
-  min-width: min-content;
-}
-
-.savedItemDisplay {
-  background-color: beige;
-  opacity: 85%;
-  border: 2px solid black;
-  font-size: 10px;
-  gap: 10px;
-
-  grid-auto-rows: auto;
-  
-  grid-column: 1 /span 2;
-  grid-row: 1;
+  overflow: hidden;
 }
 
 #view-btn {
