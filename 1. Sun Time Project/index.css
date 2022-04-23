@@ -122,9 +122,7 @@ button {
   width:fit-content;
   height:min-content;
   margin:auto;
-  background-color: beige;
-  opacity: 80%;
-  border: 2px solid black;
+
   gap: 10px;
   padding: 10px;
   display: grid;
