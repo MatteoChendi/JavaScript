@@ -9,6 +9,8 @@
 const searchInput = document.getElementById("search-input") 
 const searchBtn = document.getElementById("search-btn")
 const saveBtn = document.getElementById("save-btn")
+const viewBtn = document.getElementById("view-btn")
+const deleteBtn = document.getElementById("delete-btn")
 const mapCity = document.getElementById("mappa")
 const sunrise = document.getElementById("sunrise")
 const sunset = document.getElementById("sunset")
@@ -132,8 +134,11 @@ function render(listObject) {
     // in case it is the first search, always add location to the list
     for (i=0; i<listObject.length; i++) {  
         add = `
-        <div id="saved-items" class="savedItemDisplay">${listObject[i]}<button id="view-btn">VIEW</button>
-            <button id="delete-btn">DELETE</button></div>
+        <div id="saved-items" class="savedItemDisplay">
+        ${listObject[i]}
+        <button id="view-btn">VIEW</button>
+        <button id="delete-btn">DELETE</button>
+        </div>
         `
         listItems += add
         }
@@ -147,7 +152,14 @@ function render(listObject) {
 saveBtn.addEventListener("click", function() {
     // first "if" is to avoid saving "LOCATION" in saved items list
     if (mapCity.innerHTML == "LOCATION") {
+        return;
+        
     } else {
+    // the div below containind the saved item will be displayed only after the click
+        savedItems.style.display = 'block';
+        viewBtn.style.display = 'block';
+        deleteBtn.style.display = 'block';
+
         if (emptyListSavedItems.length > 0) {
             for (i=0; i<emptyListSavedItems.length; i++) {
                 if (emptyListSavedItems.includes(mapCity.innerHTML)) {
@@ -169,6 +181,7 @@ saveBtn.addEventListener("click", function() {
     console.log(`This is the local storage: ${JSON.parse(retrieveLocalStorage)}`)
 })
 
+
 // OK // setting localStorage to true, we will render items saved in local storage when page is refreshed
 if (itemsFromLocalStorage) {
     emptyListSavedItems = itemsFromLocalStorage
@@ -180,6 +193,9 @@ deleteAllBtn.addEventListener("dblclick", function() {
     localStorage.clear()
     emptyListSavedItems = []
     render(emptyListSavedItems)
+    savedItems.style.display = 'none';
+    viewBtn.style.display = 'none';
+    deleteBtn.style.display = 'none';
 })
 
 // // 3.2 saved location will be displayed on a line (bar) below
