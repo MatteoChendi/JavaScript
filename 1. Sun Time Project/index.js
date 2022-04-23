@@ -57,8 +57,6 @@ searchBtn.addEventListener("click", async function clickedButton() {
         if (data.message === "city not found") {
             errorMessage.innerHTML = "Sorry, city not found! Try again."
         } else {
-            console.log({data})
-       
             const sunriseTime = format_time(data.sys.sunrise)
             const sunsetTime = format_time(data.sys.sunset)
             const countryCode = data.sys.country
@@ -171,10 +169,9 @@ saveBtn.addEventListener("click", function() {
         }
     }
     render(emptyListSavedItems)
-    
     localStorage.setItem("emptyListSavedItems", JSON.stringify(emptyListSavedItems))
     let retrieveLocalStorage = localStorage.getItem("emptyListSavedItems")
-    console.log(`This is the local storage: ${JSON.parse(retrieveLocalStorage)}`)
+    //console.log(`This is the local storage: ${JSON.parse(retrieveLocalStorage)}`)
 })
 
 
@@ -194,8 +191,26 @@ deleteAllBtn.addEventListener("dblclick", function() {
     deleteBtn.style.display = 'none';
 })
 
+
+viewBtn.addEventListener("click", async function() {
+    cityName = savedItems
+    console.log("view clicked")
+    // fetch data
+    getData()
+        
+    // assign fetch data to a variable "data"
+    // remember to add "await" in front of the getData() function, or clickButton will not work with "async"
+    const data = await getData()
+    const sunriseTime = format_time(data.sys.sunrise)
+    const sunsetTime = format_time(data.sys.sunset)
+    const countryCode = data.sys.country
+    // render time in boxes below
+    sunrise.innerHTML = await sunriseTime
+    sunset.innerHTML = await sunsetTime
+    mapCity.innerHTML = await (`${cityName}, ${countryCode}`)
+})
 // OK // 3.2 saved location will be displayed on a line (bar) below
 // // 3.3 add possibility to click on previous saved location to change main box displayed ("VIEW" button near each saved location)
 // OK // 3.4 if changed, last location will be lost if not saved. If saved will be simply added below (and in localStorage)
 // // 3.3 create button DELETE if the user wants to delete what previously saved near each saved location ("DELETE" button near each saved location)
-
+// correct CSS style for saved cities
