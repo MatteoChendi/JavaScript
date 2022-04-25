@@ -143,16 +143,22 @@ function render(listObject) {
 // OK // check if the location you want to save is already saved
 // OK // BONUS: capitalize the search so "city" == "City"
 
+// only if there is no item saved in emptyList, the div will not be displayed
+if (emptyListSavedItems) {
+    savedItems.style.display = 'block';
+    viewBtn.style.display = 'block';
+    deleteBtn.style.display = 'block';
+    // the div below containind the saved item will be displayed only after the click
+}
+
+
 saveBtn.addEventListener("click", function() {
     // first "if" is to avoid saving "LOCATION" in saved items list
     if (mapCity.innerHTML == "LOCATION") {
         return;
         
     } else {
-    // the div below containind the saved item will be displayed only after the click
-        savedItems.style.display = 'block';
-        viewBtn.style.display = 'block';
-        deleteBtn.style.display = 'block';
+   
 
         if (emptyListSavedItems.length > 0) {
             for (i=0; i<emptyListSavedItems.length; i++) {
@@ -171,7 +177,7 @@ saveBtn.addEventListener("click", function() {
     render(emptyListSavedItems)
     localStorage.setItem("emptyListSavedItems", JSON.stringify(emptyListSavedItems))
     let retrieveLocalStorage = localStorage.getItem("emptyListSavedItems")
-    //console.log(`This is the local storage: ${JSON.parse(retrieveLocalStorage)}`)
+    console.log(`This is the local storage: ${JSON.parse(retrieveLocalStorage)}`)
 })
 
 
@@ -193,7 +199,7 @@ deleteAllBtn.addEventListener("dblclick", function() {
 
 
 viewBtn.addEventListener("click", async function() {
-    cityName = savedItems
+    cityName = savedItems.innerHTML
     console.log("view clicked")
     // fetch data
     getData()
@@ -214,3 +220,5 @@ viewBtn.addEventListener("click", async function() {
 // OK // 3.4 if changed, last location will be lost if not saved. If saved will be simply added below (and in localStorage)
 // // 3.3 create button DELETE if the user wants to delete what previously saved near each saved location ("DELETE" button near each saved location)
 // correct CSS style for saved cities
+
+// 4 make it a browser extension!
