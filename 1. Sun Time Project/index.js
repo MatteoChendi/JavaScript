@@ -10,7 +10,7 @@ const searchBtn = document.getElementById("search-btn")
 const saveBtn = document.getElementById("save-btn")
 const viewBtn = document.getElementById("view-btn")
 const deleteBtn = document.getElementById("delete-btn")
-const mapCity = document.getElementById("mappa")
+let mapCity = document.getElementById("mappa")
 const sunrise = document.getElementById("sunrise")
 const sunset = document.getElementById("sunset")
 let savedItems = document.getElementById("saved-items")
@@ -192,6 +192,7 @@ if (itemsFromLocalStorage) {
 deleteAllBtn.addEventListener("dblclick", function() {
     localStorage.clear()
     emptyListSavedItems = []
+    mapCity.innerHTML = "LOCATION"
     render(emptyListSavedItems)
     savedItems.style.display = 'none';
     viewBtn.style.display = 'none';
@@ -202,10 +203,24 @@ deleteAllBtn.addEventListener("dblclick", function() {
 let viewBtnClicked = document.getElementsByClassName('savedItemDisplay');
 
 for (let i=1; i<viewBtnClicked.length; i++) {
-    viewBtnClicked[i].addEventListener("click", function (e){
+    viewBtnClicked[i].addEventListener("click", async function(){
+        // this will console log the name of the city near the clicked VIEW button 
+        // PROBLEM: it only works when refreshing page and it's the first thing you do 
         let cittaNome = savedItems.children[i-1].children[0]
-        console.log("this is")
         console.log(cittaNome.textContent)
+
+        mapCity.innerHTML = cittaNome.textContent
+        cityName = capitalize(cittaNome.textContent)
+        
+        getData()
+        const data = await getData()
+        const sunriseTime = format_time(data.sys.sunrise)
+        const sunsetTime = format_time(data.sys.sunset) 
+        const countryCode = data.sys.country
+
+        sunrise.innerHTML = await  sunriseTime
+        sunset.innerHTML = await sunsetTime
+        mapCity.innerHTML = await (`${cityName}`)
     }) 
 }
 
