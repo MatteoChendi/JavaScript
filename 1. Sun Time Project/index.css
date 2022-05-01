@@ -143,8 +143,8 @@ button {
 }
 
 #delete-btn {
-  color: black;
-  background-color: red;
+  color:black;
+  background-color:red;
   grid-column: 4;
   grid-row: 1;
 }
