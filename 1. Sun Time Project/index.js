@@ -194,72 +194,39 @@ deleteAllBtn.addEventListener("dblclick", function() {
     emptyListSavedItems = []
     mapCity.innerHTML = "LOCATION"
     render(emptyListSavedItems)
-    savedItems.style.display = 'none';
-    viewBtn.style.display = 'none';
-    deleteBtn.style.display = 'none';
 })
 
 
 let viewBtnClicked = document.getElementsByClassName('savedItemDisplay');
+let x = 0
+viewBtnClicked[x].addEventListener("click", async function(){
+    for (let j=1; j<viewBtnClicked.length; j++) {
+        viewBtnClicked[j].addEventListener("click", async function(){
+            // this will console log the name of the city near the clicked VIEW button 
+            // PROBLEM: it only works when refreshing page and it's the first thing you do 
+            console.log("VIEW clicked")
+            // part of this function is same as when we click on SAVE button (to optimize, DRY principle)
+            // retrieve the name of the city next to the cliecked VIEW button
+            let cittaNome = savedItems.children[j-1].children[0]
+            console.log(`you selected: ${cittaNome.textContent}`)    
 
+            mapCity.innerHTML = cittaNome.textContent
+            console.log(`and this is mapCity: ${mapCity.innerHTML}`)
+            // remember to define cityName, because it is used in getData() function
+            cityName = mapCity.innerHTML 
+            
+            getData()
+            const data = await getData()
+            const sunriseTime = format_time(data.sys.sunrise)
+            const sunsetTime = format_time(data.sys.sunset) 
+            const countryCode = data.sys.country
 
-for (let j=1; j<viewBtnClicked.length; j++) {
-    viewBtnClicked[j].addEventListener("click", async function(){
-        // this will console log the name of the city near the clicked VIEW button 
-        // PROBLEM: it only works when refreshing page and it's the first thing you do 
-
-        // part of this function is same as when we click on SAVE button (to optimize, DRY principle)
-        // retrieve the name of the city next to the cliecked VIEW button
-        let cittaNome = savedItems.children[j-1].children[0]
-
-        mapCity.innerHTML = cittaNome.textContent
-        
-        getData()
-        const data = await getData()
-        const sunriseTime = format_time(data.sys.sunrise)
-        const sunsetTime = format_time(data.sys.sunset) 
-        const countryCode = data.sys.country
-
-        sunrise.innerHTML = await  sunriseTime
-        sunset.innerHTML = await sunsetTime
-        mapCity.innerHTML = await (`${cityName}`)
-    }) 
-}
-
-
-
-
-// viewBtn.addEventListener("click", async function() {
-//     cityName = savedItems.innerHTML
-    // console.log("view clicked")
-    // // fetch data
-    // getData()
-        
-    // // assign fetch data to a variable "data"
-    // // remember to add "await" in front of the getData() function, or clickButton will not work with "async"
-    // const data = await getData()
-    // const sunriseTime = format_time(data.sys.sunrise)
-    // const sunsetTime = format_time(data.sys.sunset)
-    // const countryCode = data.sys.country
-    // // render time in boxes below
-    // sunrise.innerHTML = await sunriseTime
-    // sunset.innerHTML = await sunsetTime
-    // mapCity.innerHTML = await (`${cityName}, ${countryCode}`)
-
-
-    // let viewBtnClicked = document.getElementsByClassName('savedItemDisplay');
-
-    // for (let i=1; i<viewBtnClicked.length; i++) {
-    //     viewBtnClicked[i].addEventListener("click", function (e){
-    //         let cittaNome = savedItems.children[i-1]
-    //         console.log("this is")
-    //         console.log(cittaNome.textContent)
-    //         console.log()
-    //     }) 
-    // }
-
-
-// })
+            sunrise.innerHTML = await sunriseTime
+            sunset.innerHTML = await sunsetTime
+            mapCity.innerHTML = await (`${cityName}`)
+        }) 
+    }
+})
 // OK // 3.2 saved location will be displayed on a line (bar) below
 // // 3.3 add possibility to click on previous saved location to change main box displayed ("VIEW" button near each saved location)
 // OK // 3.4 if changed, last location will be lost if not saved. If saved will be simply added below (and in localStorage)
