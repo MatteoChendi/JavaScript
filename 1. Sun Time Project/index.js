@@ -54,7 +54,7 @@ searchBtn.addEventListener("click", async function clickedButton() {
         // remember to add "await" in front of the getData() function, or clickButton will not work with "async"
         const data = await getData()
 
-        // if city is not found, trowh an exception
+        // if city is not found, throw an exception
         if (data.message === "city not found") {
             errorMessage.innerHTML = "Sorry, city not found! Try again."
         } else {
@@ -202,15 +202,17 @@ deleteAllBtn.addEventListener("dblclick", function() {
 
 let viewBtnClicked = document.getElementsByClassName('savedItemDisplay');
 
-for (let i=1; i<viewBtnClicked.length; i++) {
-    viewBtnClicked[i].addEventListener("click", async function(){
+
+for (let j=1; j<viewBtnClicked.length; j++) {
+    viewBtnClicked[j].addEventListener("click", async function(){
         // this will console log the name of the city near the clicked VIEW button 
         // PROBLEM: it only works when refreshing page and it's the first thing you do 
-        let cittaNome = savedItems.children[i-1].children[0]
-        console.log(cittaNome.textContent)
+
+        // part of this function is same as when we click on SAVE button (to optimize, DRY principle)
+        // retrieve the name of the city next to the cliecked VIEW button
+        let cittaNome = savedItems.children[j-1].children[0]
 
         mapCity.innerHTML = cittaNome.textContent
-        cityName = capitalize(cittaNome.textContent)
         
         getData()
         const data = await getData()
@@ -223,6 +225,7 @@ for (let i=1; i<viewBtnClicked.length; i++) {
         mapCity.innerHTML = await (`${cityName}`)
     }) 
 }
+
 
 
 
