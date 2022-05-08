@@ -200,6 +200,7 @@ deleteAllBtn.addEventListener("dblclick", function() {
 
 let viewBtnClicked = document.getElementsByClassName('savedItemDisplay');
 let x = 0
+
 // create a function eventlistener, than a for loop, and then the real addeventListener that needs to be executed!
 window.onload = function(){
 
@@ -236,11 +237,11 @@ window.onload = function(){
         // .children[2] is to specify the DELETE button only
         viewBtnClicked[j].children[2].addEventListener("click", async function(){
             console.log("DELETE clicked")
-            // this will console log the name of the city near the clicked VIEW button 
-            // part of this function is same as when we click on SAVE button (to optimize, DRY principle)
-            // retrieve the name of the city next to the cliecked VIEW button
             let cittaNome = savedItems.children[j-1].children[0]
-            console.log(`you selected: ${cittaNome.textContent}`)    
+            console.log(`you selected: ${cittaNome.textContent}`)
+            localStorage.removeItem([j-1])
+            console.log(JSON.parse(localStorage.getItem("emptyListSavedItems"))[j-1])
+            console.log(JSON.parse(localStorage.getItem("emptyListSavedItems")))
         }) 
     }
 }
