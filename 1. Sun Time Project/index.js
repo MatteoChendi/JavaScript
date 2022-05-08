@@ -202,9 +202,11 @@ let viewBtnClicked = document.getElementsByClassName('savedItemDisplay');
 let x = 0
 // create a function eventlistener, than a for loop, and then the real addeventListener that needs to be executed!
 window.onload = function(){
+
+    // define VIEW button function
     for (let j=1; j<viewBtnClicked.length; j++) {
-        // real event listener
-        viewBtnClicked[j].addEventListener("click", async function(){
+        // .children[1] is to specify the VIEW button only
+        viewBtnClicked[j].children[1].addEventListener("click", async function(){
             console.log("view clicked")
             // this will console log the name of the city near the clicked VIEW button 
             // part of this function is same as when we click on SAVE button (to optimize, DRY principle)
@@ -228,7 +230,22 @@ window.onload = function(){
             mapCity.innerHTML = await (`${cityName}`)
         }) 
     }
+
+    // and define the DELETE button function
+    for (let j=1; j<viewBtnClicked.length; j++) {
+        // .children[2] is to specify the DELETE button only
+        viewBtnClicked[j].children[2].addEventListener("click", async function(){
+            console.log("DELETE clicked")
+            // this will console log the name of the city near the clicked VIEW button 
+            // part of this function is same as when we click on SAVE button (to optimize, DRY principle)
+            // retrieve the name of the city next to the cliecked VIEW button
+            let cittaNome = savedItems.children[j-1].children[0]
+            console.log(`you selected: ${cittaNome.textContent}`)    
+        }) 
+    }
 }
+
+
 
 // OK // 3.2 saved location will be displayed on a line (bar) below
 // // 3.3 add possibility to click on previous saved location to change main box displayed ("VIEW" button near each saved location)
