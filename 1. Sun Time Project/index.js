@@ -197,10 +197,11 @@ deleteAllBtn.addEventListener("dblclick", function() {
 })
 
 
+
 let viewBtnClicked = document.getElementsByClassName('savedItemDisplay');
 let x = 0
 // create a function eventlistener, than a for loop, and then the real addeventListener that needs to be executed!
-viewBtnClicked[x].addEventListener("click", async function(){
+window.onload = function(){
     for (let j=1; j<viewBtnClicked.length; j++) {
         // real event listener
         viewBtnClicked[j].addEventListener("click", async function(){
@@ -227,39 +228,7 @@ viewBtnClicked[x].addEventListener("click", async function(){
             mapCity.innerHTML = await (`${cityName}`)
         }) 
     }
-})
-
-// create DELETE function
-// let y = 0
-// // create a function eventlistener, than a for loop, and then the real addeventListener that needs to be executed!
-// deleteBtnClicked[y].addEventListener("click", async function(){
-//     for (let w=1; w<viewBtnClicked.length; w++) {
-//         // real event listener
-//         viewBtnClicked[w].addEventListener("click", async function(){
-//             console.log("delete clicked")
-//             // this will console log the name of the city near the clicked VIEW button 
-//             // part of this function is same as when we click on SAVE button (to optimize, DRY principle)
-//             // retrieve the name of the city next to the cliecked VIEW button
-//             let cittaNome = savedItems.children[w-1].children[0]
-//             console.log(`you selected: ${cittaNome.textContent}`)    
-
-//             mapCity.innerHTML = cittaNome.textContent
-//             console.log(`and this is mapCity: ${mapCity.innerHTML}`)
-//             // remember to define cityName, because it is used in getData() function
-//             cityName = mapCity.innerHTML 
-            
-//             getData()
-//             const data = await getData()
-//             const sunriseTime = format_time(data.sys.sunrise)
-//             const sunsetTime = format_time(data.sys.sunset) 
-//             const countryCode = data.sys.country
-
-//             sunrise.innerHTML = await sunriseTime
-//             sunset.innerHTML = await sunsetTime
-//             mapCity.innerHTML = await (`${cityName}`)
-//         }) 
-//     }
-// })
+}
 
 // OK // 3.2 saved location will be displayed on a line (bar) below
 // // 3.3 add possibility to click on previous saved location to change main box displayed ("VIEW" button near each saved location)
