@@ -251,7 +251,9 @@ window.onload = function(){
             
             render(emptyListSavedItems)
             
-            // and then please remove it from localstorage
+            // and then remove it from localstorage
+            // PROBLEM: it doesn't allow to DELETE a second item, only one every refresh page!
+            // PROBLEM: and, as VIEW, it only works if clicked at the beginning as firt action!
             console.log(cittaNome.textContent)
             localStorage.removeItem(cittaNome.textContent)
             localStorage.setItem("emptyListSavedItems", JSON.stringify(emptyListSavedItems))
@@ -259,7 +261,6 @@ window.onload = function(){
         }) 
     }
 }
-
 
 
 // OK // 3.2 saved location will be displayed on a line (bar) below
