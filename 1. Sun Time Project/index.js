@@ -18,7 +18,7 @@ const errorMessage = document.getElementById("error-message")
 const deleteAllBtn = document.getElementById("delete-all")
 let cittaItem = document.getElementById("citta")
 // let's define a variable that contains the values in localStorage, so they will be rendered out when page is refreshed
-const itemsFromLocalStorage = JSON.parse(localStorage.getItem("emptyListSavedItems"))
+let itemsFromLocalStorage = JSON.parse(localStorage.getItem("emptyListSavedItems"))
 let cityName = ""
 // access key is taken from "OpenWeather API"
 const accessKey = "7abd9140ffaee6ecffd6022f8f27c79e"
@@ -239,8 +239,22 @@ window.onload = function(){
             console.log("DELETE clicked")
             let cittaNome = savedItems.children[j-1].children[0]
             console.log(`you selected: ${cittaNome.textContent}`)
-            localStorage.removeItem([j-1])
-            console.log(JSON.parse(localStorage.getItem("emptyListSavedItems"))[j-1])
+            
+            // remove the item also from emptyListSavedItems and render it
+            // local storage should not be affected and already removed the item...
+            let rimosso = emptyListSavedItems.indexOf(cittaNome.textContent)
+
+            if (rimosso > -1) {
+                console.log("is removed")
+                emptyListSavedItems.splice(rimosso, 1)
+            }
+            
+            render(emptyListSavedItems)
+            
+            // and then please remove it from localstorage
+            console.log(cittaNome.textContent)
+            localStorage.removeItem(cittaNome.textContent)
+            localStorage.setItem("emptyListSavedItems", JSON.stringify(emptyListSavedItems))
             console.log(JSON.parse(localStorage.getItem("emptyListSavedItems")))
         }) 
     }
