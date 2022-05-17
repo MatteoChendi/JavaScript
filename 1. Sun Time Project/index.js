@@ -235,7 +235,7 @@ window.onload = function(){
     // and define the DELETE button function
     for (let j=1; j<viewBtnClicked.length; j++) {
         // .children[2] is to specify the DELETE button only
-        viewBtnClicked[j].children[2].addEventListener("click", async function(){
+        viewBtnClicked[j].children[2].addEventListener("dblclick", async function(){
             console.log("DELETE clicked")
             let cittaNome = savedItems.children[j-1].children[0]
             console.log(`you selected: ${cittaNome.textContent}`)
