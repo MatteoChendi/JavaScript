@@ -21,7 +21,7 @@ let cittaItem = document.getElementById("citta")
 let itemsFromLocalStorage = JSON.parse(localStorage.getItem("emptyListSavedItems"))
 let cityName = ""
 // access key is taken from "OpenWeather API"
-const accessKey = "7abd9140ffaee6ecffd6022f8f27c79e"
+const accessKey = "XXX"
 
 // OK // the Search button triggers a function(): get a JSON request for the typed location 
 async function getData() {
