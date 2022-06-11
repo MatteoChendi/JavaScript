@@ -264,9 +264,9 @@ window.onload = function(){
 
 
 // OK // 3.2 saved location will be displayed on a line (bar) below
-// // 3.3 add possibility to click on previous saved location to change main box displayed ("VIEW" button near each saved location)
+// OK // 3.3 add possibility to click on previous saved location to change main box displayed ("VIEW" button near each saved location)
 // OK // 3.4 if changed, last location will be lost if not saved. If saved will be simply added below (and in localStorage)
-// // 3.3 create button DELETE if the user wants to delete what previously saved near each saved location ("DELETE" button near each saved location)
-// correct CSS style for saved cities
+// OK // 3.3 create button DELETE if the user wants to delete what previously saved near each saved location ("DELETE" button near each saved location)
+
 
 // 4 make it a browser extension!
